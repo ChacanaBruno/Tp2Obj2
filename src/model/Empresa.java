@@ -1,10 +1,7 @@
 package model;
 
 import model.empleado.Empleado;
-import model.empleado.Permanente;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Empresa {
@@ -23,7 +20,37 @@ public class Empresa {
         this.reciboHaberes = reciboHaberes;
     }
 
+    public double calcularTotalNetos() {
 
+        double montoTotalNetos = 0.0;
 
+        for (Empleado empleado : empleados) {
+            montoTotalNetos = montoTotalNetos + empleado.calcularNeto();
+        }
 
+        return montoTotalNetos;
+    }
+
+    public  double calcularTotalBrutos() {
+
+        return empleados.stream().mapToDouble(e -> e.calcularBruto()).sum();
+    }
+
+    /*cheaquar diferencias*/
+
+    public  double calcularTotalRetenciones() {
+
+        return empleados.stream().mapToDouble(Empleado::calcularRetenciones).sum();
+    }
+
+    public void liquidarSueldos() {
+        for (Empleado empleado : empleados) {
+            reciboHaberes.add(new ReciboHaber(empleado));
+        }
+    }
+
+    //metodo solo para el script
+    public void registrarEmpleado(Empleado empleado) {
+        empleados.add(empleado);
+    }
 }
