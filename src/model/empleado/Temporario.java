@@ -40,7 +40,7 @@ public class Temporario extends Empleado {
 
     @Override
     public double calcularRetenciones() {
-        return 0;
+        return calcularObraSocial() + calcularAportesJubilatorios();
     }
 
     @Override
@@ -52,12 +52,13 @@ public class Temporario extends Empleado {
 
         Concepto jubilacion = new Concepto("Jubilacion", calcularAportesJubilatorios());
 
+        Concepto retenciones = new Concepto("Retenciones", calcularRetenciones());
+
         conceptos.add(obraSocial);
         conceptos.add(jubilacion);
+        conceptos.add(retenciones);
 
         return conceptos;
     }
-
-
 
 }

@@ -37,7 +37,7 @@ public class Contratado extends Empleado {
 
         Set<Concepto> conceptos = new HashSet<Concepto>();
 
-        Concepto gastosAd = new Concepto("GastosAdministrativos", calcularRetenciones());
+        Concepto gastosAd = new Concepto("Gastos Administrativos", calcularRetenciones());
 
         conceptos.add(gastosAd);
 
