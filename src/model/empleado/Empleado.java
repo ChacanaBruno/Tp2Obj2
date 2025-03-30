@@ -54,20 +54,17 @@ public  abstract class Empleado {
 
     public abstract double calcularRetenciones();
 
+    public  abstract Set<Concepto> conceptos();
+
     public final double calcularNeto(){ // esto siempre se calcula asi
         return calcularBruto() - calcularRetenciones();
-    }
 
+    }
     public double calcularObraSocial(){
         return 0.0;
     }
 
     public double calcularAportesJubilatorios(){
         return 0.0;
-    }
-
-    public Set<Concepto> conceptos(){
-        Set<Concepto> conceptos = new HashSet();
-        return  conceptos;
     }
 }

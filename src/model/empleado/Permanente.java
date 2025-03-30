@@ -4,7 +4,9 @@ import model.Concepto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Permanente extends Empleado {
 
@@ -63,18 +65,25 @@ public class Permanente extends Empleado {
         return 0.15 * calcularBruto();
     }
 
+    public Set<Concepto> conceptos() {
 
+        Set<Concepto> conceptos = new HashSet<>();
 
-    public List<Concepto> indicarConceptos() {
+        Concepto salarioFamiliar = new Concepto("Salario Familiar", calcularSalarioFamiliar());
 
-        List<Concepto> conceptos = new ArrayList<>();
+        Concepto conyuge    = new Concepto("Asignacion Conyugue", 100);
 
-        Concepto salarioFamiliar = new Concepto("Salario Familiar", this.calcularSalarioFamiliar());
+        Concepto antiguedad = new Concepto("Antiguedad", 50 * asignacionPorAntiguedad());
 
-        //Concepto jubilacion = new Concepto("Jubilacion", this.calcularObraSocial());
+        Concepto obraSocial = new Concepto("Obra Social", calcularObraSocial());
+
+        Concepto jubilacion = new Concepto("Jubilacion", calcularAportesJubilatorios());
 
         conceptos.add(salarioFamiliar);
-
+        conceptos.add(conyuge);
+        conceptos.add(antiguedad);
+        conceptos.add(obraSocial);
+        conceptos.add(jubilacion);
 
         return conceptos;
     }
